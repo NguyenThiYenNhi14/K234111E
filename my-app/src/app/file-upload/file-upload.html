@@ -1,0 +1,13 @@
+<p>file-upload works!</p>
+<input type="file"
+       (change)="onFileSelected($event)"
+       #fileUpload
+       name="image">
+
+<div>
+  {{ fileName || "No file uploaded yet." }}
+
+  <button (click)="fileUpload.click()">
+    Upload
+  </button>
+</div>

@@ -1,0 +1,6 @@
+[
+  { "id": "c1", "name": "Putin", "age": 70, "picture": "putin" },
+  { "id": "c2", "name": "Putin", "age": 50, "picture": "putin" },
+  { "id": "c3", "name": "Putin", "age": 30, "picture": "putin" },
+  { "id": "c4", "name": "Putin", "age": 34, "picture": "putin" }
+]

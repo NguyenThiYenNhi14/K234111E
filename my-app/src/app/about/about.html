@@ -1,0 +1,54 @@
+<div class="about-container">
+    <header class="header">
+        <div class="avatar">
+            <img [src]="avatarImage" alt="Avatar Nguyễn Thị Yến Nhi">
+        </div>
+        <h1>{{name}}</h1>
+        <p class="subtitle">MSSV: {{mssv}}</p>
+        <p class="subtitle">Sinh viên Đại học Kinh tế - Luật</p>
+    </header>
+
+    <section class="about-section">
+        <h2>Về tôi</h2>
+        <p>Xin chào! Tôi là Nguyễn Thị Yến Nhi, sinh viên tại Đại học Kinh tế - Luật. Tôi đam mê công nghệ và lập trình web, đặc biệt là phát triển ứng dụng với Angular và TypeScript. Tôi luôn học hỏi và cập nhật kiến thức mới để trở thành một lập trình viên chuyên nghiệp.</p>
+    </section>
+
+    <section class="skills-section">
+        <h2>Kỹ năng</h2>
+        <div class="skill-grid">
+            <div class="skill-item" *ngFor="let skill of skills">
+                <h3>{{skill.category}}</h3>
+                <p>{{skill.items}}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience-section">
+        <h2>Kinh nghiệm</h2>
+        <div class="timeline">
+            <div class="timeline-item" *ngFor="let exp of experiences">
+                <div class="timeline-date">{{exp.period}}</div>
+                <div class="timeline-content">
+                    <h3>{{exp.position}}</h3>
+                    <p>{{exp.company}}</p>
+                    <p>{{exp.description}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <h2>Liên hệ</h2>
+        <div class="contact-info">
+            <p><strong>MSSV:</strong> {{contact.mssv}}</p>
+            <p><strong>Email:</strong> {{contact.email}}</p>
+            <p><strong>Điện thoại:</strong> {{contact.phone}}</p>
+            <p><strong>Địa chỉ:</strong> {{contact.address}}</p>
+        </div>
+        <div class="social-links">
+            <a [href]="social.github" class="social-btn" target="_blank">GitHub</a>
+            <a [href]="social.linkedin" class="social-btn" target="_blank">LinkedIn</a>
+            <a [href]="social.facebook" class="social-btn" target="_blank">Facebook</a>
+        </div>
+    </section>
+</div>

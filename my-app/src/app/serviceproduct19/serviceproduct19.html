@@ -1,0 +1,13 @@
+<p>serviceproduct19 works!</p>
+<div class="container">
+  <h2>Product Services</h2>
+  <p>Available services for your products</p>
+  
+  <div class="services-grid">
+    <div *ngFor="let service of services" class="service-card">
+      <div class="icon">{{ service.icon }}</div>
+      <h3>{{ service.name }}</h3>
+      <p>{{ service.description }}</p>
+    </div>
+  </div>
+</div>

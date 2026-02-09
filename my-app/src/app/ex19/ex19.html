@@ -1,0 +1,40 @@
+<p>ex19 works!</p>
+<div class="container">
+  <h1>{{ title }}</h1>
+  <p class="subtitle">Configuration Routing - Page Navigation Example</p>
+  
+  <div class="navigation-section">
+    <h2>Navigate to Pages:</h2>
+    <table>
+      <tr>
+        <td>
+          <input type="button" value="Product" [routerLink]="'/product19'" class="nav-btn">
+        </td>
+        <td>
+          <input type="button" value="List-Product" [routerLink]="'/list-product19'" class="nav-btn">
+        </td>
+        <td>
+          <input type="button" value="Service-Product" [routerLink]="'/service-product19'" class="nav-btn">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="info-box">
+    <h3>Routing URLs:</h3>
+    <ul>
+      <li><strong>Product:</strong> http://localhost:4200/product19</li>
+      <li><strong>List Product:</strong> http://localhost:4200/list-product19</li>
+      <li><strong>Service Product:</strong> http://localhost:4200/service-product19</li>
+    </ul>
+  </div>
+
+  <div class="explanation">
+    <h3>What is Routing?</h3>
+    <p>
+      Routing is page navigation technique. When you click on the buttons above,
+      it navigates to different pages without reloading the whole application.
+      This is known as <strong>Single Page Application (SPA)</strong>.
+    </p>
+  </div>
+</div>

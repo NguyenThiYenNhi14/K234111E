@@ -1,0 +1,28 @@
+<p>product-detail works!</p>
+<table border="1">
+    <tr>
+        <td>ID</td>
+        <td>
+            {{product_selected.id}}
+        </td>
+    </tr>
+    <tr>
+        <td>Name</td>
+        <td>
+            {{product_selected.name}}
+        </td>
+    </tr>
+    <tr>
+        <td>Price</td>
+        <td>
+            {{product_selected.price}}
+        </td>
+    </tr>
+    <tr>
+        <td>Image</td>
+        <td>
+            <img [src]='product_selected.image' width="100" height="100"/>
+        </td>
+    </tr>
+</table>
+<button (click)="goback()">Go Back</button>

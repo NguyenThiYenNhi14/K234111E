@@ -1,0 +1,89 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+<div class="book-page">
+
+  <!-- HEADER SECTION -->
+  <div class="page-header">
+    <div class="header-left">
+      <h1 class="header-title">
+        <i class="fa-solid fa-book"></i>
+        Book List
+      </h1>
+      <p class="header-subtitle">Manage your book collection</p>
+    </div>
+
+    <div class="header-right">
+      <a routerLink="/ex50/create" class="btn-add">
+        <i class="fa-solid fa-plus"></i>
+        <span>Add New Book</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- STATS BAR (Optional) -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <i class="fa-solid fa-books"></i>
+      <span class="stat-value">{{ books?.length || 0 }}</span>
+      <span class="stat-label">Total Books</span>
+    </div>
+  </div>
+
+  <!-- TABLE SECTION -->
+  <div class="table-container">
+    <table class="book-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Price</th>
+          <th>Image</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let b of books">
+          <td>{{ b.id }}</td>
+          <td class="book-title">{{ b.title }}</td>
+          <td>{{ b.author }}</td>
+          <td class="book-price">${{ b.price }}</td>
+
+          <td>
+            <img
+              *ngIf="b.image"
+              [src]="'http://localhost:3001/upload/' + b.image"
+              class="book-img"
+              [alt]="b.title"
+            />
+            <span *ngIf="!b.image" class="no-img">
+              <i class="fa-regular fa-image"></i>
+              No image
+            </span>
+          </td>
+
+          <td class="action-col">
+            <div class="action-buttons">
+              <a [routerLink]="['/ex50/detail', b.id]" class="btn btn-view" title="View">
+                <i class="fa-solid fa-eye"></i>
+              </a>
+
+              <a [routerLink]="['/ex50/edit', b.id]" class="btn btn-edit" title="Edit">
+                <i class="fa-solid fa-pen"></i>
+              </a>
+
+              <button class="btn btn-delete" (click)="delete(b.id)" title="Delete">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,0 +1,34 @@
+<h2 style="text-align:center">Product Catalog</h2>
+
+<div *ngFor="let c of categories" style="margin-bottom:20px">
+
+  <table border="1" width="100%" cellspacing="0" cellpadding="5">
+    <tr>
+      <th>Ma Danh Muc</th>
+      <th>Ten Danh Muc</th>
+    </tr>
+    <tr>
+      <td>{{ c.Cateid }}</td>
+      <td>{{ c.CateName }}</td>
+    </tr>
+  </table>
+
+  <table border="1" width="100%" cellspacing="0" cellpadding="5" style="margin-top:5px">
+    <tr>
+      <th>Ma San Pham</th>
+      <th>Ten San Pham</th>
+      <th>Gia San Pham</th>
+      <th>Picture</th>
+    </tr>
+
+    <tr *ngFor="let p of c.Products">
+      <td>{{ p.ProductId }}</td>
+      <td>{{ p.ProductName }}</td>
+      <td>{{ p.Price }}</td>
+      <td style="text-align:center">
+        <img [src]="p.Image" width="60">
+      </td>
+    </tr>
+  </table>
+
+</div>

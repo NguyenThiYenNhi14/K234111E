@@ -1,0 +1,32 @@
+<p>ex18 works!</p>
+<div class="container">
+  <h2>Customer Groups</h2>
+  
+  <!-- Lặp qua từng nhóm khách hàng -->
+  <div *ngFor="let group of customerGroups" class="customer-group">
+    <h3>{{ group.CustomterTypeName }} Customers</h3>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Avatar</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of group.Customers">
+          <td>
+            <img [src]="customer.Image" [alt]="customer.Name" class="avatar">
+          </td>
+          <td>{{ customer.Id }}</td>
+          <td>{{ customer.Name }}</td>
+          <td>{{ customer.Email }}</td>
+          <td>{{ customer.Age }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

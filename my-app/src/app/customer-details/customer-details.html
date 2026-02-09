@@ -1,0 +1,18 @@
+<p>customer-details works!</p>
+ID:<input type="text" #customerid>
+<button (click)="search_customer_by_id(customerid.value, tdid, tdname, tdage)">Search</button>
+<table border="1">
+    <tbody>
+    <tr>
+        <td>Customer Id</td>
+        <td #tdid></td>
+    </tr>
+    <tr>
+        <td>Customer Name</td>
+        <td #tdname></td>
+    </tr>
+    <tr>
+        <td>Customer Age</td>
+        <td #tdage></td>
+    </tr>
+    </tbody>

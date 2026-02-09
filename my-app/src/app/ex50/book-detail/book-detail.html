@@ -1,0 +1,117 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+<div class="book-detail-container">
+  <!-- HEADER -->
+  <div class="detail-header">
+    <h2>
+      <i class="fa-solid fa-book-open"></i>
+      Book Details
+    </h2>
+    <a routerLink="/ex50" class="btn-back">
+      <i class="fa-solid fa-arrow-left"></i>
+      Back to List
+    </a>
+  </div>
+
+  <!-- CONTENT -->
+  <div *ngIf="book; else loadingTpl" class="detail-content">
+    
+    <!-- IMAGE SECTION -->
+    <div class="image-section">
+      <div class="book-image-wrapper">
+        <img
+          *ngIf="book.image"
+          [src]="'http://localhost:3001/upload/' + book.image"
+          [alt]="book.title"
+        />
+        <div *ngIf="!book.image" class="no-image">
+          <i class="fa-regular fa-image"></i>
+          <span>No Image Available</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- INFO SECTION -->
+    <div class="info-section">
+      
+      <!-- Book ID -->
+      <div class="info-group">
+        <span class="info-label">Book ID</span>
+        <div class="info-value">
+          <i class="fa-solid fa-hashtag"></i>
+          {{ book.id }}
+        </div>
+      </div>
+
+      <!-- Book Title -->
+      <div class="info-group">
+        <span class="info-label">Title</span>
+        <div class="info-value">
+          <i class="fa-solid fa-book"></i>
+          {{ book.title }}
+        </div>
+      </div>
+
+      <!-- Author -->
+      <div class="info-group" *ngIf="book.author">
+        <span class="info-label">Author</span>
+        <div class="info-value">
+          <i class="fa-solid fa-user-pen"></i>
+          {{ book.author }}
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="info-group">
+        <span class="info-label">Price</span>
+        <div class="price-tag">
+          ${{ book.price }}
+        </div>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <i class="fa-solid fa-calendar-plus"></i>
+          <span class="stat-label">Added Date</span>
+          <span class="stat-value">{{ book.createdAt | date:'shortDate' }}</span>
+        </div>
+        <div class="stat-item">
+          <i class="fa-solid fa-tag"></i>
+          <span class="stat-label">Category</span>
+          <span class="stat-value">{{ book.category || 'General' }}</span>
+        </div>
+        <div class="stat-item">
+          <i class="fa-solid fa-star"></i>
+          <span class="stat-label">Rating</span>
+          <span class="stat-value">{{ book.rating || '4.5' }} / 5</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <a [routerLink]="['/ex50/edit', book.id]" class="btn-action btn-edit">
+          <i class="fa-solid fa-pen-to-square"></i>
+          Edit Book
+        </a>
+        <button class="btn-action btn-delete" (click)="deleteBook()">
+          <i class="fa-solid fa-trash-can"></i>
+          Delete Book
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LOADING TEMPLATE -->
+  <ng-template #loadingTpl>
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Loading book details...</p>
+    </div>
+  </ng-template>
+
+</div>
