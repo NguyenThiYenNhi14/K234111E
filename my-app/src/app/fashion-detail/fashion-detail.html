@@ -1,0 +1,23 @@
+<p>fashion-detail works!</p>
+{{ errMessage }}
+
+<div>
+  <label>Fashion ID: </label>
+  <input [(ngModel)]="searchId" placeholder="Nhập ID..." />
+  <button (click)="search()">Search</button>
+</div>
+
+<div *ngIf="fashion">
+  <table border="1">
+    <tr><td>Fashion Id</td><td>{{ fashion._id }}</td></tr>
+    <tr><td>Fashion Subject</td><td>{{ fashion.fashion_subject }}</td></tr>
+    <tr>
+      <td>Fashion Detail</td>
+      <td>{{ fashion.fashion_detail }}</td>
+    </tr>
+    <tr>
+      <td>Image</td>
+      <td><img src="{{ fashion.fashion_image }}" width="150px" height="150px"></td>
+    </tr>
+  </table>
+</div>

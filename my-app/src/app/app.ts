@@ -1,14 +1,31 @@
-import { Component, signal } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterOutlet, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './myservices/auth-service.ts';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,HttpClientModule],
+  imports: [CommonModule, RouterOutlet, RouterLink, HttpClientModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('my-app');
+  title = 'my-app';
+
+  constructor(private _auth: AuthService, private _router: Router) {}
+
+  isLoggedIn(): boolean {
+    return this._auth.isLoggedIn();
+  }
+
+  getUsername(): string {
+    return this._auth.getUsername() || '';
+  }
+
+  logout() {
+    this._auth.logout();
+    this._router.navigate(['/login']);
+  }
 }
