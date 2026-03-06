@@ -218,3 +218,65 @@ app.delete("/cart/clear", cors(), (req, res) => {
     req.session.cart = [];
     res.json({ message: "Đã xóa toàn bộ giỏ hàng!" });
 });
+// ============================================================
+// ===== BÀI 63: EX63 ROUTES (dùng cho Angular service) =====
+// ============================================================
+const diamondCollection = database.collection("diamond_products");
+
+const corsWithCred = cors({ origin: 'http://localhost:4200', credentials: true });
+
+// GET /ex63products
+app.get("/ex63products", corsWithCred, async (req, res) => {
+    try {
+        const result = await diamondCollection.find({}).toArray();
+        res.json(result);
+    } catch (err) {
+        res.status(500).json({ message: "Lỗi server!", error: err.message });
+    }
+});
+
+// GET /ex63cart
+app.get("/ex63cart", corsWithCred, (req, res) => {
+    const cart = req.session.ex63cart || [];
+    res.json(cart);
+});
+
+// POST /ex63cart/add
+app.post("/ex63cart/add", corsWithCred, async (req, res) => {
+    try {
+        const product = req.body;
+        if (!req.session.ex63cart) req.session.ex63cart = [];
+
+        const existIndex = req.session.ex63cart.findIndex(
+            item => item._id?.toString() === product._id?.toString()
+        );
+
+        if (existIndex >= 0) {
+            req.session.ex63cart[existIndex].qty =
+                (req.session.ex63cart[existIndex].qty || 1) + 1;
+        } else {
+            req.session.ex63cart.push({ ...product, qty: 1 });
+        }
+
+        res.json({ message: "Đã thêm vào giỏ!", cart: req.session.ex63cart });
+    } catch (err) {
+        res.status(500).json({ message: "Lỗi server!", error: err.message });
+    }
+});
+
+// PUT /ex63cart/update
+app.put("/ex63cart/update", corsWithCred, (req, res) => {
+    try {
+        const { updatedCart } = req.body;
+        req.session.ex63cart = updatedCart || [];
+        res.json({ message: "Đã cập nhật giỏ hàng!", cart: req.session.ex63cart });
+    } catch (err) {
+        res.status(500).json({ message: "Lỗi!", error: err.message });
+    }
+});
+
+// DELETE /ex63cart/clear
+app.delete("/ex63cart/clear", corsWithCred, (req, res) => {
+    req.session.ex63cart = [];
+    res.json({ message: "Đã xóa toàn bộ giỏ hàng!" });
+});

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "b1",
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "price": 120,
+    "category": "Programming",
+    "image": "b1.png",
+    "createdAt": "2026-03-06T10:57:10.042Z"
+  },
+  {
+    "id": "b2",
+    "title": "You Don't Know JS",
+    "author": "Kyle Simpson",
+    "price": 95,
+    "category": "Programming",
+    "image": "b2.jpg",
+    "createdAt": "2026-03-06T10:57:10.052Z"
+  },
+  {
+    "id": "b3",
+    "title": "Never give up",
+    "author": "Nhi",
+    "price": 500,
+    "category": "",
+    "image": "1772794664419-th.webp",
+    "createdAt": "2026-03-06T10:57:44.430Z"
+  }
+]

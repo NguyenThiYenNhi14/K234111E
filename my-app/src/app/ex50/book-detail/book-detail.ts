@@ -8,11 +8,10 @@ import { Book50 } from '../services/book50';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './book-detail.html',
-  styleUrl: './book-detail.css',
+  styleUrl: './book-detail.css'
 })
 export class BookDetail implements OnInit {
-
-  book: any;
+  book: any = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,35 +20,30 @@ export class BookDetail implements OnInit {
     private cdr: ChangeDetectorRef
   ) {}
 
-  goBack() {
-    this.router.navigate(['/ex50']);
-  }
-
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
-      console.log('DETAIL ID:', id); 
-      if (id) {
-        this.loadBook(id);
-      }
+      if (id) this.loadBook(id);
     });
   }
 
-  loadBook(id: string) {
-    console.log('CALL API WITH ID:', id); 
+  loadBook(id: string): void {
     this.bookService.getBookById(id).subscribe({
       next: data => {
-        console.log('BOOK DATA:', data); 
         this.book = data;
         this.cdr.detectChanges();
       },
-      error: err => {
-        console.error('API ERROR', err);
-      }
+      error: err => console.error('Load error:', err)
     });
   }
 
-  deleteBook() {
+  getImageUrl(image: string): string {
+    const isNewUpload = /^\d{13}-/.test(image);
+    if (isNewUpload) return `http://localhost:3000/uploads/${image}`;
+    return `http://localhost:3001/upload/${image}`;
+  }
+
+  deleteBook(): void {
     if (confirm('Are you sure you want to delete this book?')) {
       this.bookService.deleteBook(this.book.id).subscribe({
         next: () => {

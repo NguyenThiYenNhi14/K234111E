@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class Book50 {
-  private apiUrl = 'http://localhost:3000/books';
+  private apiUrl    = 'http://localhost:3000/books';
+  private uploadUrl = 'http://localhost:3000/uploads';
 
   constructor(private http: HttpClient) {}
 
@@ -18,27 +19,24 @@ export class Book50 {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
-  createBook(data: FormData) {
-  return this.http.post<any>(
-    "http://localhost:3000/books",
-    data
-  );}
+  // Port 3000 uses express.json() — send plain JSON object
+  createBook(data: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, data);
+  }
 
-  updateBook(id: string, formData: FormData): Observable<any> {
-  return this.http.put(`http://localhost:3000/books/${id}`, formData);}
+  // Port 3000 uses express.json() — send plain JSON object
+  updateBook(id: string, data: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, data);
+  }
 
-  deleteBook(id: string) {
-  return this.http.delete(
-    `http://localhost:3000/books/${id}`
-  );}
+  deleteBook(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
 
-  uploadImage(file: File) {
-  const formData = new FormData();
-  formData.append('image', file);
-
-  return this.http.post<any>(
-    'http://localhost:3001/upload-image',
-    formData
-  );}
-
+  // Port 3001 — send FormData for image upload
+  uploadImage(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('image', file, file.name);
+    return this.http.post<any>(this.uploadUrl, formData);
+  }
 }

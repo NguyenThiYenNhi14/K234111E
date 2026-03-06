@@ -24,6 +24,8 @@ import { FashionDetailComponent } from './fashion-detail/fashion-detail';
 import { authGuard } from './myclasses/auth.guard.ts';
 import { Login } from './login/login';
 import { Register } from './register/register';
+import { Ex63 } from './ex63/ex63';
+import { Ex63cart } from './ex63cart/ex63cart';
 
 
 export const routes: Routes = [
@@ -53,6 +55,8 @@ export const routes: Routes = [
     {path:"BookUpdate", component: BookUpdate},
     {path:"ex53", component: FashionComponent, canActivate: [authGuard]},
     {path:"ex54", component: FashionDetailComponent, canActivate: [authGuard]},
+    {path:"ex63", component: Ex63, canActivate: [authGuard]},
+    {path:"ex63cart", component: Ex63cart, canActivate: [authGuard]},
     {path:"login", component: Login},
     {path:"register", component: Register},
     {path:"**",component:NotFound},
